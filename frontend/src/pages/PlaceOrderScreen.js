@@ -6,7 +6,6 @@ import Meta from '../components/Meta'
 import Navbar from '../components/Navbar'
 import Loader from '../components/Loader'
 import {toast} from 'react-toastify'
-import { CART_ITEM_RESET } from '../constant/cartConstants'
 import {TweenLite, Power3} from 'gsap'
 import { gsap } from 'gsap'
 import { CSSPlugin } from 'gsap/CSSPlugin'
@@ -43,13 +42,12 @@ const PlaceOrderScreen = ({ history }) => {
 
     useEffect(() => {
         if (success) {
-            dispatch({type: CART_ITEM_RESET})
+            history.push(`/orders/${order._id}`)
             dispatch(getOrderDetails(order._id))
-            history.push(`orders/${order._id}`)
         }
         
         // eslint-disable-next-line
-    }, [history, success])
+    }, [dispatch,history, success])
 
     useEffect(() => {
         if(!loading) {

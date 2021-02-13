@@ -134,7 +134,7 @@ const ProductScreen = ({match, location, history}) => {
                                         <option value='5'>5 - Excellent</option>
                                         </select>
                                         </div>
-                                        <input type="textbox" placeholder='Write a comment' value={comment} onChange={(e) => setComment(e.target.value)} required/>
+                                        <input type="textbox" placeholder='Write a comment' value={comment} onChange={(e) => setComment(e.target.value)} />
                                         <button>Submit</button>
                                     </form>) : (<p className='radio__tabs--review--details--signin'>Please <Link to='/login'><span>sign in</span> </Link>to write a review! </p>)}
                                     <div className='radio__tabs--review--details--list'>

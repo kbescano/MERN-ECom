@@ -56,14 +56,14 @@ const OrderScreen = ({ history, match }) => {
             history.push('/login')
         }
         const addPayPalScript = async () => {
-            const { data: clientId } = await axios.get('/api/config/paypal')
+            const { data: clientId } = await axios.get('https://mern-ecom-app.herokuapp.com/api/config/paypal')
             console.log(clientId)
             const script = document.createElement('script')
             script.type = 'text/javascript'
             script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
             script.async = true
-            script.onload = () => {
-                setSdkReady(true)
+            script.onload = async() => {
+               await setSdkReady(true)
             }
             document.body.appendChild(script)
         }
@@ -81,12 +81,8 @@ const OrderScreen = ({ history, match }) => {
             }
         }
 
-        if(successPay) {
-            toast('Successfully paid!')
-        }
-
-        if(successDeliver) {
-            toast('Successfully delivered!')
+        if(loading) {
+            addPayPalScript()
         }
 
 

@@ -19,6 +19,7 @@ import {
     ORDER_PAY_REQUEST,
     ORDER_PAY_SUCCESS
 } from "../constant/orderConstants"
+import { toast } from "react-toastify"
 
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -104,7 +105,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
         const {data} = await axios.put(`https://mern-ecom-app.herokuapp.com/api/orders/${orderId}/pay`, paymentResult, config)
 
         dispatch({type: ORDER_PAY_SUCCESS, payload: data})
-
+        toast('Successfully paid!')
 
     } catch (error) {
         dispatch({
@@ -200,7 +201,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         }/deliver`, {}, config)
 
         dispatch({type: ORDER_DELIVER_SUCCESS, payload: data})
-
+        toast('Successfully delivered!')
 
     } catch (error) {
         dispatch({
