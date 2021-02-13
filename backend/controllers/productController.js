@@ -38,25 +38,6 @@ const getProductById = asyncHandler(async(req, res) => {
     
 })
 
-// @desc Fetch single products
-// @route GET /api/products/:id
-// @access Public
-const getProductByCategory = asyncHandler(async(req, res) => {
-    const product = await Product.findById(req.params.id)
-
-    if(product) {
-        res.json(product)
-    } else {
-        res.status(404)
-        throw new Error('Product not found')
-    }
-    
-})
-
-// @desc Create a product
-// @route POST/api/products/ 
-// @access Private/Admin
-
 const createProduct =  asyncHandler(async(req, res) => {
     const { name, brand, category, countInStock, image, price, gender, description} = req.body
     
@@ -175,5 +156,5 @@ const createProductReview =  asyncHandler(async(req, res) => {
 
 
 export {
-    getProducts, getProductById, getProductByCategory, createProduct, updateProduct, deleteProduct, createProductReview
+    getProducts, getProductById, createProduct, updateProduct, deleteProduct, createProductReview
 }
